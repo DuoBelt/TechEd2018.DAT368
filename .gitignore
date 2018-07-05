@@ -1,0 +1,7 @@
+.che/
+.mta/
+target/
+node_modules/
+mtad.yaml
+vendor/
+multitail.conf

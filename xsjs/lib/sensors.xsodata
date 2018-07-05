@@ -1,0 +1,7 @@
+service {
+	"DAT368.db.data::sensors.temp" as "temp" 
+		create using "inc:tempCreate.xsjslib::tempCreate"
+	;
+	"DAT368.db.data::sensors.tempNoTimestamp" as "tempNoTS" keys generate local "ID"
+	;
+}

@@ -1,0 +1,39 @@
+{
+	"welcomeFile": "index.html",
+	"authenticationMethod": "route",
+	"routes": [
+	{
+		"source": "(.*)(.xsjs)",
+		"destination": "xsjs_be",
+		"csrfProtection": false,
+		"authenticationType": "xsuaa",
+		"scope" : "$XSAPPNAME.view"
+	},
+	{
+		"source": "(.*)(.xsodata)",
+		"destination": "xsjs_be", 
+		"csrfProtection": false,
+		"authenticationType": "xsuaa",
+		"scope" : "$XSAPPNAME.create"
+	},
+    {
+		"source": "(auth_python\/)(.*)",
+		"destination": "python_be", 
+		"csrfProtection": false,
+		"authenticationType": "xsuaa",
+		"scope" : "$XSAPPNAME.create"
+    },
+    {
+		"source": "(python\/)(.*)",
+		"destination": "python_be", 
+		"csrfProtection": false,
+		"authenticationType": "none",
+		"scope" : "$XSAPPNAME.view"
+    },
+    {
+		"localDir": "resources",
+		"source": "^/(.*)", 
+		"authenticationType": "none"
+    }
+	]
+}
