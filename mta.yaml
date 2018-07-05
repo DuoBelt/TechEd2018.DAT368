@@ -20,12 +20,14 @@ modules:
         name: xsjs_be
         url: ~{url}
         forwardAuthToken: true
-    - name: python_api
-      group: destinations
-      properties:
-        name: python_be
-        url: ~{url}
-        forwardAuthToken: true
+### Python Requires Block Begin vvv
+#    - name: python_api
+#      group: destinations
+#      properties:
+#        name: python_be
+#        url: ~{url}
+#        forwardAuthToken: true
+### Python Requires Block End ^^^
 
  - name: xsjs
    type: nodejs
@@ -39,16 +41,16 @@ modules:
          url: ${default-url}
 
 ### Python Module Block Begin vvv
- - name: python
-   type: python
-   path: python
-   requires:
-    - name: dat368-uaa
-    - name: dat368-hdi
-   provides:
-    - name: python_api
-      properties:
-         url: ${default-url}
+# - name: python
+#   type: python
+#   path: python
+#   requires:
+#    - name: dat368-uaa
+#    - name: dat368-hdi
+#   provides:
+#    - name: python_api
+#      properties:
+#         url: ${default-url}
 ### Python Module Block End ^^^
 
 resources:
