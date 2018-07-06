@@ -15,11 +15,11 @@ modules:
       disk: 256M
       host: dat368-xsjs
 
-  - name: python
-    parameters:
-      memory: 96MB
-      disk: 256M
-      host: dat368-python
+#  - name: python
+#    parameters:
+#      memory: 96MB
+#      disk: 256M
+#      host: dat368-python
 
 resources:
  - name: dat368-hdi
