@@ -16,11 +16,11 @@ modules:
       host: dat368-xsjs
 
 ### Python Module Block Begin vvv
-#  - name: python
-#    parameters:
-#      memory: 96MB
-#      disk: 256M
-#      host: dat368-python
+  - name: python
+    parameters:
+      memory: 96MB
+      disk: 256M
+      host: dat368-python
 ### Python Module Block End ^^^
 
 #resources:
