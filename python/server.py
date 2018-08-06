@@ -4,6 +4,7 @@ Author: Andrew Lunde
 """
 from flask import Flask
 from flask import request
+from flask import Response
 from flask import send_from_directory
 #   
 import os
@@ -121,7 +122,9 @@ def unauth_db_only():
     connection.close()
 #
     # Return the results
-    return output
+    # return output
+    return Response(output, mimetype='text/plain')
+
 
 # If there is a request for a python/test2, return Testing message and then check JWT and connect to the data service and retrieve some data
 @app.route('/auth_python/db_valid')
@@ -261,7 +264,8 @@ def auth_db_valid():
     connection.close()
 #
     # Return the results
-    return output
+    #return output
+    return Response(output, mimetype='text/plain')
 
 if __name__ == '__main__':
     # Run the app, listening on all IPs with our chosen port number
