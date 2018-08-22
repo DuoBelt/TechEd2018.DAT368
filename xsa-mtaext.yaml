@@ -1,1 +1,34 @@
+ID: DAT368.xs_deploy
+extends: DAT368
+_schema-version: '3.1'
 
+modules:
+  - name: web
+    parameters:
+      memory: 96MB
+      disk: 256M
+      host: dat368-web
+
+  - name: xsjs
+    parameters:
+      memory: 96MB
+      disk: 256M
+      host: dat368-xsjs
+
+### Python Module Block Begin vvv
+#  - name: python
+#    parameters:
+#      memory: 96MB
+#      disk: 256M
+#      host: dat368-python
+### Python Module Block End ^^^
+
+#resources:
+# - name: dat368-hdi
+#   parameters:
+#      config:
+#         schema: DAT368
+# Don't know why specifying xs-security in mtaext causes XSA deploy to fail
+# - name: dat368-uaa
+#   parameters:
+#      path: ./xs-security.json
