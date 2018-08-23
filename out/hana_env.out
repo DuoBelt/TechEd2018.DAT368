@@ -1,0 +1,88 @@
+Getting env variables for app DAT368.db in org A-Team_Shared / space dev as andrew.lunde@sap.com...
+OK
+
+System-Provided:
+{
+ "VCAP_SERVICES": {
+  "hana": [
+   {
+    "binding_name": null,
+    "credentials": {
+     "driver": "com.sap.db.jdbc.Driver",
+     "hdi_password": "Xu5oTGOGzZmiVhhdnzW8cTDr3pAngePdmzTRy-g6J-yfruo4XgVzVVtfN9OlnfrNHeqmhoAQBTVdIWjWXR2_1KrBGscA0.qALbhdGFEQ3G5eRc108MBPgaQ10v6vWGUQ",
+     "hdi_user": "SBSS_61330980485822081226331697508727744031289208440148304516474618503",
+     "host": "10.253.120.189",
+     "password": "Gq16XTNu43z1XIolJ0X789IK89uUjCo4AYVLrZ.QNtPHve_yXC4AKvGnrAuOvcz2B2jr-yrPQmQa0m5ZE835aaj8Uo.mpJZHegQl8KzFhp5k0UIswmU.zot.LJOKamNd",
+     "port": "30053",
+     "schema": "36A07B50C3814D0DA767D32BB711A135",
+     "url": "jdbc:sap://10.253.120.189:30053/?currentschema=36A07B50C3814D0DA767D32BB711A135",
+     "user": "SBSS_88891169718079127957935701968605353902969918763631770109213032155"
+    },
+    "instance_name": "DAT368.dat368-hdi",
+    "label": "hana",
+    "name": "DAT368.dat368-hdi",
+    "plan": "hdi-shared",
+    "provider": null,
+    "syslog_drain_url": null,
+    "tags": [
+     "hana",
+     "database",
+     "relational"
+    ],
+    "volume_mounts": []
+   }
+  ]
+ }
+}
+
+{
+ "VCAP_APPLICATION": {
+  "application_id": "baf9ea06-3bc0-4f3a-8032-43ec7e8bcc88",
+  "application_name": "DAT368.db",
+  "application_uris": [],
+  "application_version": "bdd3aa9c-13d7-40be-8140-9e8d0eaa388f",
+  "cf_api": "https://api.cf.us10.hana.ondemand.com",
+  "limits": {
+   "disk": 1024,
+   "fds": 16384,
+   "mem": 256
+  },
+  "name": "DAT368.db",
+  "space_id": "764c6a4f-2458-406e-8553-5c5c7b222a28",
+  "space_name": "dev",
+  "uris": [],
+  "users": null,
+  "version": "bdd3aa9c-13d7-40be-8140-9e8d0eaa388f"
+ }
+}
+
+User-Provided:
+DEPLOY_ATTRIBUTES: {
+  "app-content-digest": "7FD2347C823F729A2896C57EFC2F398C",
+  "check-deploy-id": true,
+  "dependency-type": "soft",
+  "descriptor-defined-uris": [],
+  "execute-app": true,
+  "failure-marker": "STDERR:Deployment to container .* failed.*",
+  "stop-app": true,
+  "success-marker": "STDOUT:Deployment to container .* done.*"
+}
+DEPLOY_ID: deploy-12207059
+MTA_METADATA: {
+  "id": "DAT368",
+  "version": "0.0.1"
+}
+MTA_MODULE_METADATA: {
+  "name": "db"
+}
+MTA_MODULE_PROVIDED_DEPENDENCIES: []
+MTA_SERVICES: [
+  "DAT368.dat368-hdi"
+]
+MTA_SHARED_SERVICES: []
+
+No running env variables have been set
+
+Staging Environment Variable Groups:
+npm_config_@sap:registry: https://npm.sap.com
+
