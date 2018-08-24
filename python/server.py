@@ -228,6 +228,7 @@ def auth_db_valid():
     port = hana.credentials['port']
     user = hana.credentials['user']
     password = hana.credentials['password']
+    haascert = hana.credentials['certificate']
     
 
     output += 'schema: ' + schema + '\n'
@@ -247,8 +248,10 @@ def auth_db_valid():
 #    output += '\n'
 #    # Connect to the python HANA DB driver using the connection info
 #    connection = pyhdb.connect(host,int(port),user,password)
-    connection = dbapi.connect(host,int(port),user,password)
-#    connection = dbapi.connect(addresst=host,port=int(port),user=user,password=password)
+#    connection = dbapi.connect(host,int(port),user,password)
+#    connection = dbapi.connect(address=host,port=int(port),user=user,password=password)
+# User for HANA as a Service instances
+    connection = dbapi.connect(address=host,port=int(port),user=user,password=password,encrypt='true',sslValidateCertificate='false',sslCryptoProvider='openssl',sslTrustStore=haascert)
 #    # Prep a cursor for SQL execution
     cursor = connection.cursor()
 #    # Form an SQL statement to retrieve some data

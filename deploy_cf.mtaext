@@ -7,9 +7,9 @@ modules:
     parameters:
       memory: 128MB
       disk: 256M
-      host: shared.dat368-00-web
+      host: dat368-00-web
     properties:
-      TENANT_HOST_PATTERN: '^(.*).dat368-(.*)-(.*).cfapps.(.*).hana.ondemand.com'
+      TENANT_HOST_PATTERN: '^(.*)-(.*)-(.*).cfapps.(.*).hana.ondemand.com'
 
   - name: xsjs
     parameters:
