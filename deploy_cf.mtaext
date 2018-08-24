@@ -7,7 +7,7 @@ modules:
     parameters:
       memory: 128MB
       disk: 256M
-      host: dat368-00-web
+      host: dat368-xx-web
     properties:
       TENANT_HOST_PATTERN: '^(.*)-(.*)-(.*).cfapps.(.*).hana.ondemand.com'
 
@@ -15,13 +15,13 @@ modules:
     parameters:
       memory: 128MB
       disk: 256M
-      host: dat368-00-xsjs
+      host: dat368-xx-xsjs
 
   - name: python
     parameters:
       memory: 128MB
       disk: 256M
-      host: dat368-00-python
+      host: dat368-xx-python
 
 #resources:
 # - name: dat368-hdi

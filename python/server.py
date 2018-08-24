@@ -43,8 +43,8 @@ hana = env.get_service(label='hana')
 @app.route('/')
 def hello_world():
     output = '<strong>Hello World! I am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0)) + '</strong> Try these links.</br>\n'
-    output += '<a href="/env">/env</a><br />\n'
     output += '<a href="/python/test">/python/test</a><br />\n'
+    output += '<a href="/python/env">/python/env</a><br />\n'
     output += '<a href="/python/db_only">/python/db_only</a><br />\n'
     output += '<a href="/auth_python/db_valid">/auth_python/db_valid</a><br />\n'
     return output
@@ -54,7 +54,7 @@ def hello_world():
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
-@app.route('/env')
+@app.route('/python/env')
 def dump_env():
     output = '\n Key Environment variables... \n'
     output += 'PYTHONHOME: ' + str(os.getenv("PYTHONHOME", 0)) + '\n'
@@ -64,6 +64,7 @@ def dump_env():
     output += 'port: ' + hana.credentials['port'] + '\n'
     output += 'user: ' + hana.credentials['user'] + '\n'
     output += 'pass: ' + hana.credentials['password'] + '\n'
+    output += 'cert: ' + hana.credentials['certificate'] + '\n'
     output += '\n'
     return output
 
@@ -72,6 +73,7 @@ def dump_env():
 def python_links():
     output = '<strong>Hello World! I am instance ' + str(os.getenv("CF_INSTANCE_INDEX", 0)) + '</strong> Try these links.</br>\n'
     output += '<a href="/python/test">/python/test</a><br />\n'
+    output += '<a href="/python/env">/python/env</a><br />\n'
     output += '<a href="/python/db_only">/python/db_only</a><br />\n'
     output += '<a href="/auth_python/db_valid">/auth_python/db_valid</a><br />\n'
     return output
@@ -96,6 +98,7 @@ def unauth_db_only():
     port = hana.credentials['port']
     user = hana.credentials['user']
     password = hana.credentials['password']
+    haascert = hana.credentials['certificate']
     
     output += 'schema: ' + schema + '\n'
     output += 'host: ' + host + '\n'
@@ -106,6 +109,8 @@ def unauth_db_only():
 #    # Connect to the python HANA DB driver using the connection info
 #    connection = pyhdb.connect(host,int(port),user,password)
     connection = dbapi.connect(host,int(port),user,password)
+# User for HANA as a Service instances
+#    connection = dbapi.connect(address=host,port=int(port),user=user,password=password,encrypt='true',sslValidateCertificate='true',sslCryptoProvider='openssl',sslTrustStore=haascert,sslKeyStore=haascert)
 #    connection = dbapi.connect(addresst=host,port=int(port),user=user,password=password)
 #    # Prep a cursor for SQL execution
     cursor = connection.cursor()
@@ -251,7 +256,7 @@ def auth_db_valid():
 #    connection = dbapi.connect(host,int(port),user,password)
 #    connection = dbapi.connect(address=host,port=int(port),user=user,password=password)
 # User for HANA as a Service instances
-    connection = dbapi.connect(address=host,port=int(port),user=user,password=password,encrypt='true',sslValidateCertificate='false',sslCryptoProvider='openssl',sslTrustStore=haascert)
+    connection = dbapi.connect(address=host,port=int(port),user=user,password=password,encrypt='true',sslValidateCertificate='true',sslCryptoProvider='openssl',sslTrustStore=haascert)
 #    # Prep a cursor for SQL execution
     cursor = connection.cursor()
 #    # Form an SQL statement to retrieve some data
@@ -272,5 +277,7 @@ def auth_db_valid():
 
 if __name__ == '__main__':
     # Run the app, listening on all IPs with our chosen port number
-    app.run(host='0.0.0.0', port=port)
+    #app.run(host='0.0.0.0', port=port)
+    # Enable server.py reload on change
+    app.run(debug=True, host='0.0.0.0', port=port)
 
