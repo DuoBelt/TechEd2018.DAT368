@@ -5,28 +5,28 @@
 	{
 		"source": "(.*)(.xsjs)",
 		"destination": "xsjs_be",
-		"csrfProtection": false,
+		"csrfProtection": true,
 		"authenticationType": "xsuaa",
 		"scope" : "$XSAPPNAME.view"
 	},
 	{
 		"source": "(.*)(.xsodata)",
 		"destination": "xsjs_be", 
-		"csrfProtection": false,
+		"csrfProtection": true,
 		"authenticationType": "xsuaa",
 		"scope" : "$XSAPPNAME.create"
 	},
 	{
 		"source": "(auth_python\/)(.*)",
 		"destination": "python_be", 
-		"csrfProtection": false,
+		"csrfProtection": true,
 		"authenticationType": "xsuaa",
 		"scope" : "$XSAPPNAME.create"
 	},
 	{
 		"source": "(python\/)(.*)",
 		"destination": "python_be", 
-		"csrfProtection": false,
+		"csrfProtection": true,
 		"authenticationType": "none",
 		"scope" : "$XSAPPNAME.view"
 	},
