@@ -5,14 +5,14 @@
 	{
 		"source": "(.*)(.xsjs)",
 		"destination": "xsjs_be",
-		"csrfProtection": true,
+		"csrfProtection": false,
 		"authenticationType": "xsuaa",
 		"scope" : "$XSAPPNAME.view"
 	},
 	{
 		"source": "(.*)(.xsodata)",
 		"destination": "xsjs_be", 
-		"csrfProtection": true,
+		"csrfProtection": false,
 		"authenticationType": "xsuaa",
 		"scope" : "$XSAPPNAME.create"
 	},
