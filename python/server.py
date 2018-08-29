@@ -64,7 +64,8 @@ def dump_env():
     output += 'port: ' + hana.credentials['port'] + '\n'
     output += 'user: ' + hana.credentials['user'] + '\n'
     output += 'pass: ' + hana.credentials['password'] + '\n'
-    #output += 'cert: ' + hana.credentials['certificate'] + '\n'
+    if 'certificate' in hana.credentials:
+        output += 'cert: ' + hana.credentials['certificate'] + '\n'
     output += '\n'
     return output
 
@@ -101,7 +102,8 @@ def unauth_db_only():
 
     # The certificate will available for HANA service instances that require an encrypted connection
     # Note: This was tested to work with python hdbcli-2.3.112 tar.gz package not hdbcli-2.3.14 provided in XS_PYTHON00_0-70003433.ZIP  
-    haascert = hana.credentials['certificate']
+    if 'certificate' in hana.credentials:
+        haascert = hana.credentials['certificate']
     
     output += 'schema: ' + schema + '\n'
     output += 'host: ' + host + '\n'
@@ -111,7 +113,7 @@ def unauth_db_only():
 
 #    # Connect to the python HANA DB driver using the connection info
 # User for HANA as a Service instances
-    if haascert:
+    if 'certificate' in hana.credentials:
         connection = dbapi.connect(
             address=host,
             port=int(port),
@@ -130,7 +132,7 @@ def unauth_db_only():
     cursor = connection.cursor()
 
 #    # Form an SQL statement to retrieve some data
-    if haascert:
+    if 'certificate' in hana.credentials:
         cursor.execute('SELECT "tempId", "tempVal", "ts", "created" FROM "DAT368.db.data::sensors.temp"')
     else:
         cursor.execute('SELECT "tempId", "tempVal", "ts", "created" FROM "' + schema + '"."DAT368.db.data::sensors.temp"')
@@ -183,7 +185,8 @@ def auth_db_valid():
 
     # The certificate will available for HANA service instances that require an encrypted connection
     # Note: This was tested to work with python hdbcli-2.3.112 tar.gz package not hdbcli-2.3.14 provided in XS_PYTHON00_0-70003433.ZIP  
-    haascert = hana.credentials['certificate']
+    if 'certificate' in hana.credentials:
+        haascert = hana.credentials['certificate']
 
     output += 'schema: ' + schema + '\n'
     output += 'host: ' + host + '\n'
@@ -191,7 +194,7 @@ def auth_db_valid():
     output += 'user: ' + user + '\n'
     output += 'pass: ' + password + '\n'
 
-    if haascert:
+    if 'certificate' in hana.credentials:
         connection = dbapi.connect(
             address=host,
             port=int(port),
@@ -211,7 +214,7 @@ def auth_db_valid():
     cursor = connection.cursor()
 
 #    # Form an SQL statement to retrieve some data
-    if haascert:
+    if 'certificate' in hana.credentials:
         cursor.execute('SELECT "tempId", "tempVal", "ts", "created" FROM "DAT368.db.data::sensors.temp"')
     else:
         cursor.execute('SELECT "tempId", "tempVal", "ts", "created" FROM "' + schema + '"."DAT368.db.data::sensors.temp"')
