@@ -6,7 +6,9 @@ org=$(cf org teched_dat368 --guid); echo "teched_dat368: " $org
 hdb=$(cf service dat368-db --guid); echo "dat368-db: " $hdb
 spc=$(cf space dev00 --guid); echo "dev00: " $spc
 
-for i in {01..01}; do
+# Run with the time command like so: time ./mkspaces_DAT368.sh
+# there are 30 student laptops This script takes about 45mins to run for 30
+for i in {01..30}; do
   echo ""
   echo "Run" $i
   cf create-space dev$i -o teched_dat368
@@ -19,7 +21,7 @@ for i in {01..01}; do
   cf services | grep dat368-hdi | grep "create succeeded"
   while [ $? -ne 0 ]; do
     cf services | grep dat368-hdi
-    echo "Still creating dat368-hdi."
+    echo "Still creating dat368-hdi in space dev$i."
     sleep 30
     cf services | grep dat368-hdi | grep "create succeeded"
   done 

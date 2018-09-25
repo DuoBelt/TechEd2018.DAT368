@@ -17,7 +17,7 @@ for i in {01..01}; do
   cf delete-service dat368-hdi -f
   cf service dat368-hdi
   while [ $? -eq 0 ]; do
-    echo "Still deleting dat368-hdi."
+    echo "Still deleting dat368-hdi in space dev$i."
     sleep 30
     cf service dat368-hdi
   done
