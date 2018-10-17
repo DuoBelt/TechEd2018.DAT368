@@ -6,7 +6,7 @@ org=$(cf org teched_dat368 --guid); echo "teched_dat368: " $org
 hdb=$(cf service dat368-db --guid); echo "dat368-db: " $hdb
 spc=$(cf space dev00 --guid); echo "dev00: " $spc
 
-for i in {01..01}; do
+for i in {01..30}; do
   echo ""
   echo "Run" $i
   cf t -s dev$i
