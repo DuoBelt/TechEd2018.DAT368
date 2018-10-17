@@ -8,15 +8,17 @@ spc=$(cf space dev00 --guid); echo "dev00: " $spc
 
 # Run with the time command like so: time ./mkspaces_DAT368.sh
 # there are 30 student laptops This script takes about 45mins to run for 30
-for i in {01..30}; do
+for i in {03..30}; do
   echo ""
   echo "Run" $i
   cf create-space dev$i -o teched_dat368
   spc=$(cf space dev$i --guid); echo "dev$i: " $spc
   cf set-space-role primaryuser01@gmail.com teched_dat368 dev$i SpaceDeveloper
   cf t -o teched_dat368 -s dev00
+  echo "cf update-service dat368-db -c '{"operation":"adddatabasemapping","orgid":"'"'$org'"'","spaceid":"'"'$spc'"'","isdefault":"true"}'"
   cf update-service dat368-db -c '{"operation":"adddatabasemapping","orgid":"'$org'","spaceid":"'$spc'","isdefault":"true"}'
   cf t -s dev$i
+  echo "cf create-service hana hdi-shared dat368-hdi -c '{"'"'hdatabase_id'"'":"'"'$hdb'"'"}'"
   cf create-service hana hdi-shared dat368-hdi -c '{"database_id":"'$hdb'"}'
   cf services | grep dat368-hdi | grep "create succeeded"
   while [ $? -ne 0 ]; do
